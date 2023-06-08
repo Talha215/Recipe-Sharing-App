@@ -44,27 +44,6 @@ const RecipeApi = {
         return userData
     },
 
-    addUser: async(userdata) => {
-        const user = await fetch(RecipeApi.baseURI + "/api/user", {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-            },
-            body: JSON.stringify(userdata)
-        })
-        .then( (result) => {
-            return result.json()
-        })
-        .then( (data) => {
-            return data
-        })
-        .catch( (error) => { 
-            console.log(error) 
-        });
-    },
-
     getAllUsers: async (jwt) => {
         const users = await fetch(RecipeApi.baseURI + "/api/user", {
             method: "GET",
@@ -237,6 +216,22 @@ const RecipeApi = {
             });
         // console.log(recipes)
         return recipes
+    },
+
+    getAnalyzedRecipe: async (recipeApiId) => {
+        const query = "https://api.spoonacular.com/recipes/" + recipeApiId + "/analyzedInstructions?apiKey=" + RecipeApi.spoonacularAPIKey;
+        const details = await fetch(query)
+            .then( (result) => {
+                return result.json();
+            })
+            .then( (data) => {
+                return data;
+            })
+            .catch( (error) => {
+                console.log(error);
+            });
+
+            return details;
     }
 }
 

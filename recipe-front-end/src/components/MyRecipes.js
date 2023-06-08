@@ -31,7 +31,7 @@ function MyRecipes(props) {
                                 userdata={props.userdata}
                                 recipeuser={userRecipe.user.username}
                                 recipe={userRecipe.recipe.id}
-                                recipeSteps = {null}
+                                recipeApiId={userRecipe.recipe.apiid}
                                 userrecipeid={userRecipe.id}
                                 key={key++} 
                                 title={userRecipe.recipe.name}

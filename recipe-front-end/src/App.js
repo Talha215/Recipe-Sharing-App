@@ -4,9 +4,9 @@ import Header from './components/Header';
 import Login from './components/Login';
 import Home from './components/Home';
 import AddRecipes from './components/AddRecipes';
-import CreateAccount from './components/CreateAccount';
 import MyRecipes from './components/MyRecipes';
 import { useState } from 'react';
+import RecipeDetails from './components/RecipeDetails';
 
 function App() {
   const [userData, setUserData] = useState(null);
@@ -20,15 +20,13 @@ function App() {
             <Routes>
               <Route path="/" element={ <Home userdata={userData}/> } exact />
               <Route path="/add" element={ <AddRecipes userdata={userData}/> } />
-              <Route path="/myrecipes" element={ <MyRecipes userdata={userData}/> } />
+              <Route path="/myrecipes" element={ <MyRecipes userdata={userData}/>}/> 
+              <Route path="/details/:apiId" element={<RecipeDetails />}/>
             </Routes>
-          : 
-          <Login setUserData={setUserData} setLoggedIn={setLoggedIn} />
+          : <Login setUserData={setUserData} setLoggedIn={setLoggedIn} />
       }
     </div>
   );
 }
 
 export default App;
-
-
