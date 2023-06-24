@@ -31,6 +31,12 @@ public class User implements Serializable {
 	@NotBlank
 	private String password;
 	
+	@NotBlank
+	private String firstName;
+	
+	@NotBlank
+	private String lastName;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private Role role;
@@ -41,12 +47,14 @@ public class User implements Serializable {
 	@Column
 	private String profilePhoto;
 
-	public User(boolean enabled, Role role, Integer id,String username, String password, String profilePhoto){
+	public User(boolean enabled, Role role, Integer id,String username, String password, String firstName, String lastName, String profilePhoto){
 		this.enabled = enabled;
 		this.role = role;
 		this.id=id;
 		this.username=username;
 		this.password=password;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.profilePhoto=profilePhoto;
 	}
 	
@@ -76,6 +84,22 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public Role getRole() {
@@ -108,7 +132,9 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enabled="
-				+ enabled + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", role=" + role + ", enabled=" + enabled + ", profilePhoto="
+				+ profilePhoto + "]";
 	}
+
 }

@@ -49,8 +49,6 @@ public class SecurityConfiguration {
 			.antMatchers("/webjars/**").permitAll()
 			.antMatchers("/v3/**").permitAll()
 			.anyRequest().authenticated() // if not specified, all other end points need a user login
-			//.anyRequest().authenticated() // if not specified, all other end points need a user login
-
 			.and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
@@ -59,25 +57,8 @@ public class SecurityConfiguration {
 		return http.build();
 	}
 	
-//	@Bean
-//    public CorsFilter corsFilter() {
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        CorsConfiguration config = new CorsConfiguration();
-//        config.setAllowCredentials(true);
-//        config.addAllowedOrigin("*");
-//        config.addAllowedHeader("*");
-//        config.addAllowedMethod("OPTIONS");
-//        config.addAllowedMethod("GET");
-//        config.addAllowedMethod("POST");
-//        config.addAllowedMethod("PUT");
-//        config.addAllowedMethod("DELETE");
-//        source.registerCorsConfiguration("/**", config);
-//        return new CorsFilter(source);
-//    }
-	
 	@Bean
 	protected PasswordEncoder encoder() {
-//		return NoOpPasswordEncoder.getInstance();
 		return new BCryptPasswordEncoder();
 	}
 	
